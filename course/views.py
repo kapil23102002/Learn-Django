@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from course.models import Student
 from .form  import LoginForm
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def home(request):
@@ -27,9 +28,11 @@ def showform(request):
             print("Validation Complete")
             print('Name :', fm.cleaned_data['name'])
             print('Email :', fm.cleaned_data['email'])
-        fm = LoginForm()
-
+            return HttpResponseRedirect('/cor/success/')
     else:
         fm = LoginForm()
     fm.order_fields(field_order=['email', 'name'])
     return render(request,  "LoginForm.html" , {'form' :fm})
+
+def success(request):
+    return render(request, 'success.html')
