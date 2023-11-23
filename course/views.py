@@ -25,9 +25,13 @@ def showform(request):
     if request.method == 'POST':
         fm = LoginForm(request.POST,  auto_id=True, label_suffix=' ↔️', initial={'name': 'kapil', 'email': 'kapil@gmail.com'})
         if fm.is_valid():
-            print("Validation Complete")
-            print('Name :', fm.cleaned_data['name'])
-            print('Email :', fm.cleaned_data['email'])
+            i =  fm.cleaned_data['id']
+            nm = fm.cleaned_data['name']
+            em = fm.cleaned_data['email']
+            ps = fm.cleaned_data['password']
+            reg = Student(stuname = nm, stuemail = em , stuid = i , stupass = ps)
+            reg.save()
+            fm = LoginForm()
             return HttpResponseRedirect('/cor/success/')
     else:
         fm = LoginForm()
