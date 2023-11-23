@@ -19,6 +19,7 @@ def nav(request):
 
 def studetails(request):
     stud = Student.objects.all()
+
     return render(request,  "studetails.html" , {'stu' :stud})
 
 def showform(request):
@@ -41,13 +42,14 @@ def showform(request):
 def success(request):
     return render(request, 'success.html')
 
-def showdetails(request, my_id):
-    if my_id == 1:
-        std = {'id': my_id}
+def showdetails(request,pk):
+    student = Student.objects.get(pk=pk)
+    data={
+        "roll":student.stuid,
+        "name":student.stuname,
+        "email":student.stuemail,
+        "pass":student.stupass
 
-    if my_id == 2:
-        std = {'id': my_id}
+    }
+    return render(request, 'dynamicurl.html', data)
 
-    if my_id == 3:
-        std = {'id': my_id}
-    return render(request, 'dynamicurl.html', std)
