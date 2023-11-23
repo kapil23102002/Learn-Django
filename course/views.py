@@ -40,3 +40,14 @@ def showform(request):
 
 def success(request):
     return render(request, 'success.html')
+
+def showdetails(request, my_id):
+    if my_id == 1:
+        std = {'id': my_id}
+
+    if my_id == 2:
+        std = {'id': my_id}
+
+    if my_id == 3:
+        std = {'id': my_id}
+    return render(request, 'dynamicurl.html', std)

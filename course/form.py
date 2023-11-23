@@ -5,7 +5,7 @@ from .models import Student
 # -----------------------This is Model Form------------------------------
 
 class LoginForm(forms.ModelForm):
-    stuname = forms.CharField(max_length=20, min_length=4) # extra validation in model form 
+    stuname = forms.CharField(max_length=20, min_length=4) # extra validation in model form
     class Meta:
         model = Student
         fields = ['stuid', 'stuname', 'stuemail', 'stupass']
