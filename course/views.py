@@ -25,10 +25,10 @@ def showform(request):
     if request.method == 'POST':
         fm = LoginForm(request.POST,  auto_id=True, label_suffix=' ↔️', initial={'name': 'kapil', 'email': 'kapil@gmail.com'})
         if fm.is_valid():
-            i =  fm.cleaned_data['id']
-            nm = fm.cleaned_data['name']
-            em = fm.cleaned_data['email']
-            ps = fm.cleaned_data['password']
+            i =  fm.cleaned_data['stuid']
+            nm = fm.cleaned_data['stuname']
+            em = fm.cleaned_data['stuemail']
+            ps = fm.cleaned_data['stupass']
             reg = Student(stuname = nm, stuemail = em , stuid = i , stupass = ps)
             reg.save()
             fm = LoginForm()
