@@ -21,6 +21,15 @@ def studetails(request):
     return render(request,  "studetails.html" , {'stu' :stud})
 
 def showform(request):
-    fm = LoginForm(auto_id=True, label_suffix=' ↔️', initial={'name': 'kapil', 'email': 'kapil@gmail.com'})
+    if request.method == 'POST':
+        fm = LoginForm(request.POST,  auto_id=True, label_suffix=' ↔️', initial={'name': 'kapil', 'email': 'kapil@gmail.com'})
+        if fm.is_valid():
+            print("Validation Complete")
+            print('Name :', fm.cleaned_data['name'])
+            print('Email :', fm.cleaned_data['email'])
+        fm = LoginForm()
+
+    else:
+        fm = LoginForm()
     fm.order_fields(field_order=['email', 'name'])
     return render(request,  "LoginForm.html" , {'form' :fm})
