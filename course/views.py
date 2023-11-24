@@ -4,8 +4,7 @@ from .form  import LoginForm, SignUpForm
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
 
 # Create your views here.
@@ -102,3 +101,9 @@ def login(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+# ----User Logout -----------------
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect('/cor/login/')
