@@ -3,8 +3,8 @@ from course.models import Student
 from .form  import LoginForm, SignUpForm
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, update_session_auth_hash
 
 
 # Create your views here.
@@ -105,7 +105,7 @@ def login(request):
 
 def profile(request):
     if request.user.is_authenticated:   
-        return render(request, 'profile.html')
+        return render(request, 'profile.html', {'name': request.user})
     else:
         return HttpResponseRedirect('/cor/login/')
 
@@ -113,9 +113,26 @@ def profile(request):
 # ----User Logout -----------------
 
 def logout(request):
-    if not request.user.is_authenticated:   
+    # if not request.user.is_authenticated:   
         auth_logout(request)
         return HttpResponseRedirect('/cor/login/')
-    else:
-        return HttpResponseRedirect('/cor/profile/')
+    # else:
+        # return HttpResponseRedirect('/cor/profile/')
         
+# ------------User can Change Password -----------------
+
+def changepass(request):  
+    if request.user.is_authenticated:   
+
+        if request.method == 'POST':
+            fm = PasswordChangeForm(user=request.user, data=request.POST)
+            if fm.is_valid():
+                fm.save()
+                update_session_auth_hash(request, fm.user)
+                return HttpResponseRedirect('/cor/profile/')
+
+        else:
+            fm = PasswordChangeForm(user=request.user)
+        return render(request, 'changepass.html',{'form':fm} )
+    else:
+        return HttpResponseRedirect('/cor/login/')

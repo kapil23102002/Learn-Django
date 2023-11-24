@@ -7,7 +7,10 @@
 </head>
 <body>
     <h1>profile Page</h1>
+    <h3>Welcome {{name}}</h3>
 
-    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'logout' %}">Logout</a><br><br>
+    <a href="{% url 'changepass' %}">Change Password</a>
+
 </body>
 </html>
