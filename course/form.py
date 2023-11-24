@@ -1,6 +1,9 @@
 from django import forms
 from django.core import validators
 from .models import Student
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 
 # -----------------------This is Model Form------------------------------
 
@@ -19,7 +22,14 @@ class LoginForm(forms.ModelForm):
 # ---------Model Inheritance------------------
 # padh liya geeky show se (70th)  video
 
+# -------auth user with more inputs----------------------------
 
+class SignUpForm(UserCreationForm):
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email']
+        labels = {'email':'Email'}
 
 
 # # ---------------This is Form Api---------------------------

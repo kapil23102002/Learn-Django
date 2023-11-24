@@ -11,6 +11,8 @@ urlpatterns = [
     path('success/', views.success ),
     path('details/<int:pk>/', views.showdetails , name="showdata"),
     path('bsignup/', views.bsignup , name="bsignup"),
+    path('signup/', views.signup , name="signup"),
+
 
 
 

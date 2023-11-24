@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from course.models import Student
-from .form  import LoginForm
+from .form  import LoginForm, SignUpForm
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm
@@ -58,7 +58,7 @@ def showdetails(request,pk):
     }
     return render(request, 'dynamicurl.html', data)
 
-# ---User auth-----
+# ---User auth with built in method-----
 def bsignup(request):
     if request.method == 'POST':
         frm = UserCreationForm(request.POST)
@@ -68,4 +68,13 @@ def bsignup(request):
         frm = UserCreationForm()
     return render(request, 'bsignup.html',{'form':frm} )
 
+# --- add more inputs in User auth method-----
             
+def signup(request):
+    if request.method == 'POST':
+        fm = SignUpForm(request.POST)
+        if fm.is_valid():
+            fm.save()
+    else:
+        fm = SignUpForm()
+    return render(request, 'signup.html',{'form':fm} )
