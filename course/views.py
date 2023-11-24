@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from course.models import Student
 from .form  import LoginForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect    
 from django.contrib  import messages
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def home(request):
@@ -57,3 +58,14 @@ def showdetails(request,pk):
     }
     return render(request, 'dynamicurl.html', data)
 
+# ---User auth-----
+def bsignup(request):
+    if request.method == 'POST':
+        frm = UserCreationForm(request.POST)
+        if frm.is_valid():
+            frm.save()
+    else:
+        frm = UserCreationForm()
+    return render(request, 'bsignup.html',{'form':frm} )
+
+            

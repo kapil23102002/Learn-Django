@@ -10,6 +10,8 @@ urlpatterns = [
     path('form/', views.showform , name="showform"),
     path('success/', views.success ),
     path('details/<int:pk>/', views.showdetails , name="showdata"),
+    path('bsignup/', views.bsignup , name="bsignup"),
+
 
 
 
