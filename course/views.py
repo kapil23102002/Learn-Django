@@ -84,26 +84,38 @@ def signup(request):
 # ----------User Login Form--------------
 
 def login(request):
-    if request.method == 'POST':
-        fm = AuthenticationForm(request=request, data=request.POST)
-        if fm.is_valid():   
-            uname = fm.cleaned_data['username']
-            upass = fm.cleaned_data['password']
-            user = authenticate(username=uname, password=upass)
-            if user is not None:
-                auth_login(request, user)
-                return HttpResponseRedirect('/cor/profile/')
+    if not request.user.is_authenticated:   
+        if request.method == 'POST':
+            fm = AuthenticationForm(request=request, data=request.POST)
+            if fm.is_valid():   
+                uname = fm.cleaned_data['username']
+                upass = fm.cleaned_data['password']
+                user = authenticate(username=uname, password=upass)
+                if user is not None:
+                    auth_login(request, user)
+                    return HttpResponseRedirect('/cor/profile/')
+        else:
+            fm = AuthenticationForm()   
+        return render(request, 'login.html',{'form':fm} )
     else:
-        fm = AuthenticationForm()   
-    return render(request, 'login.html',{'form':fm} )
+        return HttpResponseRedirect('/cor/profile/')
+
 
 # ----show profile page -----------------
 
 def profile(request):
-    return render(request, 'profile.html')
+    if request.user.is_authenticated:   
+        return render(request, 'profile.html')
+    else:
+        return HttpResponseRedirect('/cor/login/')
+
 
 # ----User Logout -----------------
 
 def logout(request):
-    auth_logout(request)
-    return HttpResponseRedirect('/cor/login/')
+    if not request.user.is_authenticated:   
+        auth_logout(request)
+        return HttpResponseRedirect('/cor/login/')
+    else:
+        return HttpResponseRedirect('/cor/profile/')
+        
