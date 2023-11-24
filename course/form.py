@@ -9,13 +9,15 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ['stuid', 'stuname', 'stuemail', 'stupass']
+        # fields = '__all__' sari fields show hogi jitni models me hai      
+        # exclude = ['name'] is field ko chod kr sari fields show hogi
+
         labels = {'stuid': 'Roll No.', 'stuname':'Name', 'stuemail': 'Email', 'stupass':'Password'}
         widgets = {'stupass': forms.PasswordInput,'stuname':forms.TextInput}
         # error_messages = {'name': {'required':'Roll No. Likhna hai '}, 'stuname':{'required':'Name Likhna hai '}, 'stuemail': {'required':'Email Likhna hai '}, 'stupass':{'required':'Password Likhna hai '}}
 
-
-
-
+# ---------Model Inheritance------------------
+# padh liya geeky show se (70th)  video
 
 
 

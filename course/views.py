@@ -2,6 +2,7 @@ from django.shortcuts import render
 from course.models import Student
 from .form  import LoginForm
 from django.http import HttpResponseRedirect
+from django.contrib  import messages
 
 # Create your views here.
 def home(request):
@@ -33,7 +34,10 @@ def showform(request):
             reg = Student(stuname = nm, stuemail = em , stuid = i , stupass = ps)
             reg.save()
             fm = LoginForm()
-            return HttpResponseRedirect('/cor/success/')
+            messages.success(request, 'Apka Form submit ho gaya hai ....')
+            # messages.info(request, 'Apka Form submit ho raha hai ....')
+
+            # return HttpResponseRedirect('/cor/success/')
     else:
         fm = LoginForm()
     fm.order_fields(field_order=['email', 'name'])
