@@ -3,7 +3,10 @@ from course.models import Student
 from .form  import LoginForm, SignUpForm
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+
 
 # Create your views here.
 def home(request):
@@ -68,7 +71,7 @@ def bsignup(request):
         frm = UserCreationForm()
     return render(request, 'bsignup.html',{'form':frm} )
 
-# --- add more inputs in User auth method-----
+# --- add more inputs in User Registration method-----
             
 def signup(request):
     if request.method == 'POST':
@@ -78,3 +81,24 @@ def signup(request):
     else:
         fm = SignUpForm()
     return render(request, 'signup.html',{'form':fm} )
+
+# ----------User Login Form--------------
+
+def login(request):
+    if request.method == 'POST':
+        fm = AuthenticationForm(request=request, data=request.POST)
+        if fm.is_valid():   
+            uname = fm.cleaned_data['username']
+            upass = fm.cleaned_data['password']
+            user = authenticate(username=uname, password=upass)
+            if user is not None:
+                auth_login(request, user)
+                return HttpResponseRedirect('/cor/profile/')
+    else:
+        fm = AuthenticationForm()   
+    return render(request, 'login.html',{'form':fm} )
+
+# ----show profile page -----------------
+
+def profile(request):
+    return render(request, 'profile.html')

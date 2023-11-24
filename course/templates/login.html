@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   
 </head>
 <body>
-    <form action="" method="post" novalidate>
+    <h1>Please Login here...</h1>
+    <form action="" method="post">
         {% csrf_token %}
         {% for fm in form %}
             {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br> <br>
         {% endfor %}
-        <input type="submit" value="Submit" />
-    </form>
+        <input type="submit" value="Login">
+    </form> 
     <br>
-    <a href="{% url 'login' %}"> Login </a>
+    <a href="{% url 'signup' %}"> Sign Up</a>
 </body>
-</html> 
+</html>

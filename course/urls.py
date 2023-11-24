@@ -12,6 +12,10 @@ urlpatterns = [
     path('details/<int:pk>/', views.showdetails , name="showdata"),
     path('bsignup/', views.bsignup , name="bsignup"),
     path('signup/', views.signup , name="signup"),
+    path('login/', views.login , name="login"),
+    path('profile/', views.profile ),
+
+
 
 
 
