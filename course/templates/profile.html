@@ -8,11 +8,21 @@
 <body>
     <h1>profile Page</h1>
     <h3>Welcome {{name}}</h3>
+
+    {% if Users != None %}
+    <h3>List of Users...</h3>
+            {% for user in Users %}
+            <a href="{% url 'userinfo' user.id %}">{{user.username}}</a> <br>
+            {% endfor %}
+        {% endif %}
+        <hr>
     <form action="" method="post">
         {% csrf_token %}
-        {% for fm in form %}
+        
+        {% for fm in form %}        
             {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br> <br>
         {% endfor %}
+        
     </form>
 
     <a href="{% url 'logout' %}">Logout</a><br><br>

@@ -32,12 +32,20 @@ class SignUpForm(UserCreationForm):
         labels = {'email':'Email'}
 
 # -------when User loggedIn then show User Details----------------------------
-
+      # Normal User-----
 class UserProfile(UserChangeForm):
     password = None
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name',  'email', 'date_joined', 'last_login' ]
+        labels = {'email':'Email'}
+
+      # Super User---------
+class AdminProfile(UserChangeForm):
+    password = None
+    class Meta:
+        model = User
+        fields = '__all__'
         labels = {'email':'Email'}
 
 

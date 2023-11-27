@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from course.models import Student
-from .form  import LoginForm, SignUpForm, UserProfile
+from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, update_session_auth_hash
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -48,6 +49,8 @@ def showform(request):
 
 def success(request):
     return render(request, 'success.html')
+
+# -------Student Details with dynamic URL----------
 
 def showdetails(request,pk):
     student = Student.objects.get(pk=pk)
@@ -105,8 +108,13 @@ def login(request):
 
 def profile(request):
     if request.user.is_authenticated:   
-        fm = UserProfile(instance = request.user)
-        return render(request, 'profile.html', {'name': request.user, 'form':fm})
+        if request.user.is_superuser == True:
+            fm = AdminProfile(instance = request.user)
+            Users = User.objects.all()
+        else:
+            Users = None
+            fm = UserProfile(instance = request.user)
+        return render(request, 'profile.html', {'name': request.user, 'form':fm, 'Users' : Users})
     else:
         return HttpResponseRedirect('/cor/login/')
 
@@ -151,5 +159,15 @@ def editprofile(request):
         else:
             fm = UserProfile(instance = request.user)
         return render(request, 'editprofile.html', {'name': request.user, 'form':fm})
+    else:
+        return HttpResponseRedirect('/cor/login/')
+
+# ------- Admin can view Other Users Profile------------
+
+def userinfo(request, id):
+    if request.user.is_authenticated:
+        pi = User.objects.get(pk= id)
+        fm = AdminProfile(instance = pi)
+        return render(request, 'userinfo.html', {'form':fm} )
     else:
         return HttpResponseRedirect('/cor/login/')
