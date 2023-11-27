@@ -13,9 +13,12 @@ urlpatterns = [
     path('bsignup/', views.bsignup , name="bsignup"),
     path('signup/', views.signup , name="signup"),
     path('login/', views.login , name="login"),
-    path('profile/', views.profile ),
+    path('profile/', views.profile , name='profile'),
     path('logout/', views.logout , name="logout"),
     path('changepass/', views.changepass , name="changepass"),
+    path('editprofile/', views.editprofile , name="editprofile"),
+
+    
 
     
 

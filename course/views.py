@@ -138,3 +138,18 @@ def changepass(request):
     else:
         return HttpResponseRedirect('/cor/login/')
 
+
+# ------------User can Edit their Profile ----------------
+
+def editprofile(request):
+    if request.user.is_authenticated:  
+        if request.method == 'POST':
+            fm = UserProfile(request.POST, instance = request.user) 
+            if fm.is_valid():
+                messages.success(request, 'Profile Updated Successfully')
+                fm.save()
+        else:
+            fm = UserProfile(instance = request.user)
+        return render(request, 'editprofile.html', {'name': request.user, 'form':fm})
+    else:
+        return HttpResponseRedirect('/cor/login/')
