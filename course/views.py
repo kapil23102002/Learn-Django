@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from course.models import Student
-from .form  import LoginForm, SignUpForm
+from .form  import LoginForm, SignUpForm, UserProfile
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, update_session_auth_hash
 
 
@@ -105,7 +105,8 @@ def login(request):
 
 def profile(request):
     if request.user.is_authenticated:   
-        return render(request, 'profile.html', {'name': request.user})
+        fm = UserProfile(instance = request.user)
+        return render(request, 'profile.html', {'name': request.user, 'form':fm})
     else:
         return HttpResponseRedirect('/cor/login/')
 
@@ -136,3 +137,4 @@ def changepass(request):
         return render(request, 'changepass.html',{'form':fm} )
     else:
         return HttpResponseRedirect('/cor/login/')
+

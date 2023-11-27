@@ -2,7 +2,7 @@ from django import forms
 from django.core import validators
 from .models import Student
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 # -----------------------This is Model Form------------------------------
@@ -29,6 +29,15 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'email']
+        labels = {'email':'Email'}
+
+# -------when User loggedIn then show User Details----------------------------
+
+class UserProfile(UserChangeForm):
+    password = None
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name',  'email', 'date_joined', 'last_login' ]
         labels = {'email':'Email'}
 
 
