@@ -49,6 +49,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'course.middlewares.BrotherMiddleware',
+    'course.middlewares.FatherMiddleware',
+    'course.middlewares.MummyMiddleware',
+
 ]
 
 ROOT_URLCONF = 'schoolProject.urls'

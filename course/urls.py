@@ -22,6 +22,8 @@ urlpatterns = [
     path('set/', views.setsession , name='setsession'),
     path('get/', views.getsession , name='getsession'),
     path('del/', views.delsession , name='delsession'),
+    path('middleware/', views.middleware ),
+
 
     
 

@@ -206,3 +206,9 @@ def delsession(request):
     # clear expired session---
     request.session.clear_expired()
     return render(request, 'sessions_framework/delsession.html')
+
+# -----------MiddleWare -------------
+
+def middleware(request):
+    print('I am View')
+    return HttpResponse('This is Middleware Page')
