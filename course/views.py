@@ -111,10 +111,12 @@ def profile(request):
         if request.user.is_superuser == True:
             fm = AdminProfile(instance = request.user)
             Users = User.objects.all()
+            ip = request.session.get('IP')
         else:
             Users = None
             fm = UserProfile(instance = request.user)
-        return render(request, 'profile.html', {'name': request.user, 'form':fm, 'Users' : Users})
+            ip = request.session.get('IP')
+        return render(request, 'profile.html', {'name': request.user, 'form':fm, 'Users' : Users, 'ip': ip})
     else:
         return HttpResponseRedirect('/cor/login/')
 
