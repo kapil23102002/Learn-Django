@@ -4,7 +4,7 @@ from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile
 from django.http import HttpResponseRedirect    
 from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UserChangeForm
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, update_session_auth_hash
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout,  update_session_auth_hash
 from django.contrib.auth.models import User
 
 
@@ -171,3 +171,32 @@ def userinfo(request, id):
         return render(request, 'userinfo.html', {'form':fm} )
     else:
         return HttpResponseRedirect('/cor/login/')
+
+# --------Sessions and its Methods -------------
+
+def sessions(request):
+    return render(request, 'sessions_framework/sessions.html')
+
+def setsession(request):
+    request.session['name'] = 'kapil'
+    # set expiry date----\
+    request.session.set_expiry(10)
+    return render(request, 'sessions_framework/setsession.html')
+
+def getsession(request):
+    name = request.session.get('name')
+    keys = request.session.keys()
+    items = request.session.items()
+    request.session.setdefault('age', '24')
+    # expiry information---
+    print(request.session.get_session_cookie_age())
+    print(request.session.get_expiry_age())
+    print(request.session.get_expiry_date())
+    print(request.session.get_expire_at_browser_close())
+    return render(request, 'sessions_framework/getsession.html', {'name':name,'keys': keys, 'items':items})
+
+def delsession(request):
+    request.session.flush()
+    # clear expired session---
+    request.session.clear_expired()
+    return render(request, 'sessions_framework/delsession.html')

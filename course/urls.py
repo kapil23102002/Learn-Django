@@ -18,6 +18,12 @@ urlpatterns = [
     path('changepass/', views.changepass , name="changepass"),
     path('editprofile/', views.editprofile , name="editprofile"),
     path('userinfo/<int:id>', views.userinfo , name="userinfo"),
+    path('sessions/', views.sessions , name='sessions'),
+    path('set/', views.setsession , name='setsession'),
+    path('get/', views.getsession , name='getsession'),
+    path('del/', views.delsession , name='delsession'),
+
+    
 
     
 
