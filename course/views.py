@@ -22,8 +22,19 @@ def react(request):
 def nav(request): 
     return render(request,  "nav.html")
 
+# -------------- Query Set Api ---------------
 def studetails(request):
-    stud = Student.objects.all()
+    # stud = Student.objects.all()  # Return all fields 
+    # stud = Student.objects.filter(stuid = 101) # Return Match fields
+    # stud = Student.objects.exclude(stuid = 101) # Return UnMatch fields
+    # stud = Student.objects.order_by('stuid') # Return assending order by Id field
+    # stud = Student.objects.order_by('-stuid') # Return desending order by Id field
+    # stud = Student.objects.order_by('?') # Return Randomly  order
+    # stud = Student.objects.order_by('stuid').reverse()[:5] # Return last 5 value by reverse order
+    # stud = Student.objects.values('stuname', 'stuid') # Return Custom values  
+        # it has more methods But this Time we are DONE------ 
+
+
 
     return render(request,  "studetails.html" , {'stu' :stud})
 
