@@ -12,13 +12,13 @@ from django.db.models import Avg, Sum, Min, Max, Count
 
 # Create your views here.
 def home(request):
-    return render(request,  "index.html")
+        return render(request,  "index.html")
 
 def django(request):
-    return render(request,  "django.html")
+       return render(request,  "django.html")
 
 def react(request):
-    return render(request,  "react.html")
+      return render(request,  "react.html")
 
 
 def nav(request): 
@@ -246,6 +246,6 @@ def delsession(request):
 
 def middleware(request):
     print('I am View')
-    return HttpResponse('This is Middleware Page')
 
+    return HttpResponse('This is Middleware Page')
 

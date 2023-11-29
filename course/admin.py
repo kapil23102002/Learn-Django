@@ -12,3 +12,5 @@ class StudentAdmin(admin.ModelAdmin):
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     list_display= ['page_name', 'page_details', 'page_publish_date', 'user']
+
+
