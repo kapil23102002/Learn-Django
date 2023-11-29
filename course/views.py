@@ -247,3 +247,5 @@ def delsession(request):
 def middleware(request):
     print('I am View')
     return HttpResponse('This is Middleware Page')
+
+
