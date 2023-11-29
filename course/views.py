@@ -34,6 +34,19 @@ def studetails(request):
     # stud = Student.objects.values('stuname', 'stuid') # Return Custom values  
         # it has more methods But this Time we are DONE------ 
 
+# This Query Set Api Methods are NOT Return New Query Set
+
+    stud = Student.objects.get(pk = 1) # Return by Primary Key which have PK = 1 value 
+    # stud = Student.objects.first() # Return First value 
+    # stud = Student.objects.last() # Return Last value 
+    # stud = Student.objects.latest('stuid') # Return Latest value 
+    # stud = Student.objects.earliest('stuid') # Return Earliest value 
+    # stud = Student.objects.create({pura data object me likhna hai}) # Return  and add new data 
+    # stud = Student.objects.filter(pk= 1).update(stuname= 'akash') # Return Updated  value, shows in admin pannel
+    # stud = Student.objects.get(pk = 2).delete() # Delete by Primary Key which have PK = 2 value 
+    # stud = Student.objects.all().count() # Return Number of value in terminal
+    # print(stud)
+    #     # it has more methods But this Time we are DONE------ 
 
 
     return render(request,  "studetails.html" , {'stu' :stud})

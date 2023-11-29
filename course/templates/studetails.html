@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Student Details</h1>
+
+<!--  Query Set Api That Returns New Query Set 
     {% if stu %}
         <h1>Show Data</h1>
 
@@ -19,7 +21,7 @@
                 <th>Password</th>
             </tr>
             
-            {% for st in stu %}
+            {% for st in st %} 
             <tr>
                 <td>{{st.id}}</td>
                 <td>{{st.stuid}}</td>
@@ -31,7 +33,28 @@
         </table>
     {% else %}
         <h1>No Data</h1>
-    {% endif %}    
+    {% endif %}    -->
+
+
+<!--  Query Set Api That Do not Returns New Query Set -->
+    
+<table border="2">
+    <tr>
+        <th>S.No</th>
+        <th>Roll No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+    </tr>
+    
+    <tr>
+        <td>{{stu.id}}</td>
+        <td>{{stu.stuid}}</td>
+        <td>{{stu.stuname}}</td>
+        <td>{{stu.stuemail}}</td>
+        <td>{{stu.stupass}}</td>
+    </tr>
+</table>
 
 </body>
 </html>
