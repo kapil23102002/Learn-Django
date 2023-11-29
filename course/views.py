@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout,  update_session_auth_hash
 from django.contrib.auth.models import User
 from django.db.models import Avg, Sum, Min, Max, Count
+from django.views import View
 
 
 
@@ -249,3 +250,20 @@ def middleware(request):
 
     return HttpResponse('This is Middleware Page')
 
+# -----------Class BAsed View---------------------------
+
+class classview(View): # 1st method to write text 
+    def get(self , request):
+        return HttpResponse('Hello this is class based view') 
+
+class classview(View):  # 2nd method to write text 
+    name = 'kapil'
+    def get(self , request):
+        return HttpResponse(self.name) 
+    
+
+class classview(View):  # render method to write text 
+    def get(self , request):
+       name = {'name': 'kapil Thakur'}
+       return render(request, 'classBasedView/class.html' , name) 
+    

@@ -26,7 +26,7 @@ class Page(models.Model):
 
 
 # --------------Many To One Relationship -----------------
-    user = models.ManyToManyField(User)
+    # user = models.ManyToManyField(User)
     page_name = models.CharField(max_length=30)
     page_details = models.TextField()
     page_publish_date = models.DateField()
