@@ -6,6 +6,8 @@ from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout,  update_session_auth_hash
 from django.contrib.auth.models import User
+from django.db.models import Avg, Sum, Min, Max, Count
+
 
 
 # Create your views here.
@@ -36,7 +38,7 @@ def studetails(request):
 
 # This Query Set Api Methods are NOT Return New Query Set
 
-    stud = Student.objects.get(pk = 1) # Return by Primary Key which have PK = 1 value 
+    # stud = Student.objects.get(pk = 1) # Return by Primary Key which have PK = 1 value 
     # stud = Student.objects.first() # Return First value 
     # stud = Student.objects.last() # Return Last value 
     # stud = Student.objects.latest('stuid') # Return Latest value 
@@ -47,6 +49,15 @@ def studetails(request):
     # stud = Student.objects.all().count() # Return Number of value in terminal
     # print(stud)
     #     # it has more methods But this Time we are DONE------ 
+
+# Aggregation method in Query Set ApI------
+    # stud = Student.objects.all().aggregate(Avg('stuid'))
+    # stud = Student.objects.all().aggregate(Sum('stuid'))
+    # stud = Student.objects.all().aggregate(Sum('stuid'))
+    # stud = Student.objects.all().aggregate(Max('stuid'))
+    # stud = Student.objects.all().aggregate(Min('stuid'))
+    stud = Student.objects.all().aggregate(Count('stuid'))
+    print(stud)
 
 
     return render(request,  "studetails.html" , {'stu' :stud})
