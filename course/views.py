@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.db.models import Avg, Sum, Min, Max, Count
 from django.views import View
+from django.views.generic.base import  RedirectView
 
 
 
