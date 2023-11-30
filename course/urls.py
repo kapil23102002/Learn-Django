@@ -24,6 +24,8 @@ urlpatterns = [
     path('del/', views.delsession , name='delsession'),
     path('middleware/', views.middleware ),
     path('classview/', views.classview.as_view() , name = 'classview'),
+    path('classform/', views.classform.as_view() , name = 'classform'),
+
 
 
 

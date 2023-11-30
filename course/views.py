@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from course.models import Student
-from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile
+from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile, StdClass
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UserChangeForm
@@ -185,6 +185,9 @@ def changepass(request):
         return HttpResponseRedirect('/cor/login/')
 
 
+
+
+
 # ------------User can Edit their Profile ----------------
 
 def editprofile(request):
@@ -267,3 +270,13 @@ class classview(View):  # render method to write text
        name = {'name': 'kapil Thakur'}
        return render(request, 'classBasedView/class.html' , name) 
     
+    # Form get and post method -------------
+class classform(View):
+    def get(self , request):
+        fm = StdClass()
+        return render(request, 'classBasedView/classform.html',{'form':fm} )
+
+    def post(self, request):
+        fm = StdClass(request.POST)
+        if fm.is_valid():
+            return HttpResponse('form submitted') 

@@ -48,6 +48,10 @@ class AdminProfile(UserChangeForm):
         fields = '__all__'
         labels = {'email':'Email'}
 
+#  form in class based ---
+class StdClass(forms.Form):
+    stuname = forms.CharField(max_length=20)
+
 
 # # ---------------This is Form Api---------------------------
 
