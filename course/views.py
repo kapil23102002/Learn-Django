@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.db.models import Avg, Sum, Min, Max, Count
 from django.views import View
 from django.views.generic.base import  RedirectView
+from django.views.generic.list import ListView
 
 
 
@@ -281,3 +282,8 @@ class classform(View):
         fm = StdClass(request.POST)
         if fm.is_valid():
             return HttpResponse('form submitted') 
+
+# --------------- All List Shows in genric class based view ----------------
+
+class ShowList(ListView):
+    model = Student
