@@ -10,5 +10,7 @@
     <p>Student Id : {{student.stuid}}</p> 
     <p>Student Name : {{student.stuname}}</p> 
     <p>Student Email : {{student.stuemail}}</p> 
+    <a href="{% url 'updatedata' student.id %}"><input type="submit" value="Edit Details"></a>
+
 </body>
 </html>

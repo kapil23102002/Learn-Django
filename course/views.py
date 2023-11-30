@@ -11,7 +11,7 @@ from django.views import View
 from django.views.generic.base import  RedirectView, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic.edit import FormView, CreateView, UpdateView
 
 
 
@@ -321,6 +321,15 @@ class GenricFormSaved(CreateView):
 # class ThankyouForm(TemplateView):
 #     template_name = 'course/thankyouForm.html'
 
-# ye likhna hai student ki detail show  karwane ke liye but pehle se hi likha hai isliye  comment kiya
+# for show details
 class ShowData(DetailView):
     model = Student
+
+# for update details
+class UpdateData(UpdateView):
+    model = Student
+    fields = ['stuid', 'stuname', 'stuemail', 'stupass']
+    # success_url = '/cor/thankyouform'
+
+# class ThankyouForm(TemplateView):
+#     template_name = 'course/thankyouForm.html'
