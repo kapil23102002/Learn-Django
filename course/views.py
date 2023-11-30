@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from course.models import Student
-from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile, StdClass
+from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile, StdClass, GenricFormClass
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib  import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UserChangeForm
@@ -8,9 +8,10 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.db.models import Avg, Sum, Min, Max, Count
 from django.views import View
-from django.views.generic.base import  RedirectView
+from django.views.generic.base import  RedirectView, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView
 
 
 
@@ -297,3 +298,12 @@ class ShowData(DetailView):
     # default template name = course/student_detail.html # Automatically computer find this name of template file
     # We can create Custom template name---
     # template_name = course/student.html # Now computer find this name of template file
+
+# --------------Genric Form in clased Based------------------- 
+class GenricForm(FormView):
+    template_name = 'course/genricForm.html'
+    form_class = GenricFormClass
+    success_url = '/cor/thankyouform'
+
+class ThankyouForm(TemplateView):
+    template_name = 'course/thankyouForm.html'

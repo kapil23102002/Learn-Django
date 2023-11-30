@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-
+<h1>Students List</h1>
   <!-- link dynamically List And Details  -->
   {% for Student in student_list %}
         <li><a href="{% url 'Showdata' Student.stuid%}">{{Student.stuname}}</a></li><br>

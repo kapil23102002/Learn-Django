@@ -52,6 +52,12 @@ class AdminProfile(UserChangeForm):
 class StdClass(forms.Form):
     stuname = forms.CharField(max_length=20)
 
+# Form in genric class based---------
+class GenricFormClass(forms.Form):
+    name = forms.CharField(max_length=20)
+    age = forms.IntegerField()
+    msg = forms.CharField(widget=forms.Textarea)
+
 
 # # ---------------This is Form Api---------------------------
 

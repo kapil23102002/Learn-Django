@@ -28,6 +28,10 @@ urlpatterns = [
     path('home/', views.RedirectView.as_view(url = '/cor/classform') , name = 'home'),
     path('Showdata/', views.ShowList.as_view() , name = 'showlist'),
     path('Showdata/<int:pk>', views.ShowData.as_view() , name = 'Showdata'),
+    path('genricform/', views.GenricForm.as_view() , name = 'genricform'),
+    path('thankyouform/', views.ThankyouForm.as_view() , name = 'thankyouform'),
+
+
 
 
 
