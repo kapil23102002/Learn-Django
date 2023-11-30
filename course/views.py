@@ -10,6 +10,8 @@ from django.db.models import Avg, Sum, Min, Max, Count
 from django.views import View
 from django.views.generic.base import  RedirectView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
 
 
 
@@ -287,3 +289,11 @@ class classform(View):
 
 class ShowList(ListView):
     model = Student
+
+# ---------------Shows Data by specific Id in genric class based view ----------------
+
+class ShowData(DetailView):
+    model = Student
+    # default template name = course/student_detail.html # Automatically computer find this name of template file
+    # We can create Custom template name---
+    # template_name = course/student.html # Now computer find this name of template file

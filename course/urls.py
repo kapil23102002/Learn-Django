@@ -26,7 +26,9 @@ urlpatterns = [
     path('classview/', views.classview.as_view() , name = 'classview'),
     path('classform/', views.classform.as_view() , name = 'classform'),
     path('home/', views.RedirectView.as_view(url = '/cor/classform') , name = 'home'),
-    path('showlist/', views.ShowList.as_view() , name = 'showlist'),
+    path('Showdata/', views.ShowList.as_view() , name = 'showlist'),
+    path('Showdata/<int:pk>', views.ShowData.as_view() , name = 'Showdata'),
+
 
 
 

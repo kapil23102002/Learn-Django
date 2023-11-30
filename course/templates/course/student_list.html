@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+
+  <!-- link dynamically List And Details  -->
   {% for Student in student_list %}
-    {{Student.stuid}}
-    {{Student.stuname}}
-    {{Student.stuemail}}
-  {% endfor %}
-</body>
+        <li><a href="{% url 'Showdata' Student.stuid%}">{{Student.stuname}}</a></li><br>
+        {% endfor %}
+    </body>
 </html>
