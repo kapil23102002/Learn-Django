@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 class Student(models.Model):
@@ -8,9 +9,12 @@ class Student(models.Model):
     stuemail = models.EmailField(max_length=70)
     stupass = models.CharField(max_length=70)
 
-    def __str__ (self): 
-        return self.stuname
-       
+    # def __str__ (self): 
+    #     return self.stuname
+
+    def get_absolute_url(self):
+        return reverse("Showdata", kwargs = {"pk": self.pk})       
+    
 class Page(models.Model):
 
 # --------------One To One Relationship -----------------
