@@ -32,6 +32,8 @@ urlpatterns = [
     path('thankyouform/', views.ThankyouForm.as_view() , name = 'thankyouform'),
     path('genricformsaved/', views.GenricFormSaved.as_view() , name = 'genricformsaved'),
     path('updatedata/<int:pk>', views.UpdateData.as_view() , name = 'updatedata'),
+    path('deletedata/<int:pk>', views.DeleteData.as_view() , name = 'deletedata'),
+
 
     
 

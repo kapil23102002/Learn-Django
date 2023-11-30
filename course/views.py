@@ -11,7 +11,7 @@ from django.views import View
 from django.views.generic.base import  RedirectView, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView, CreateView, UpdateView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
 
 
@@ -329,7 +329,9 @@ class ShowData(DetailView):
 class UpdateData(UpdateView):
     model = Student
     fields = ['stuid', 'stuname', 'stuemail', 'stupass']
-    # success_url = '/cor/thankyouform'
 
-# class ThankyouForm(TemplateView):
-#     template_name = 'course/thankyouForm.html'
+
+# for Delete details
+class DeleteData(DeleteView):
+    model = Student
+    success_url = '/cor/genricformsaved/'
