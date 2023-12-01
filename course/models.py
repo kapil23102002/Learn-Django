@@ -35,3 +35,13 @@ class Page(models.Model):
     page_details = models.TextField()
     page_publish_date = models.DateField()
 
+    
+# For Pagination ----
+
+class Pagination(models.Model):
+    title = models.CharField(max_length=70)
+    desc = models.TextField(max_length=700)
+    publish_date = models.DateTimeField()
+
+    def __str__ (self): 
+        return self.title

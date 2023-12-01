@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from course.models import Student
+from course.models import Student, Pagination
 from .form  import LoginForm, SignUpForm, UserProfile, AdminProfile, StdClass, GenricFormClass
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib  import messages
@@ -12,6 +12,7 @@ from django.views.generic.base import  RedirectView, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator
 
 
 
@@ -335,3 +336,12 @@ class UpdateData(UpdateView):
 class DeleteData(DeleteView):
     model = Student
     success_url = '/cor/genricformsaved/'
+
+# Pagination in function Based View --------------------
+
+def Paginations(request):
+    all_post = Pagination.objects.all()
+    paginator = Paginator(all_post, 2, orphans=1) # if last page has only 1 item then we can show last item in previous page by using---- orphans = 1
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'pagination.html', {'page_obj': page_obj})
